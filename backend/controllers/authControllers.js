@@ -1,19 +1,50 @@
 import authModels from '../models/authModels.js';
+const {} = authModels;
 
 const authControllers = {
     registerController: async (req, res) => {
-        const response = await authModels.registerModel(req, res);
-        console.log(response);
-        return res.status(200).json({ response });
+        return res
+            .status(200)
+            .json({
+                success: true,
+                redirect: 'check-email'
+            });
     },
+
     loginController: (req, res) => {
-        res.send('hello world');
+        return res
+            .status(200)
+            .json({
+                success: true,
+                redirect: 'check-email'
+            });
     },
-    magicLinkController: (req, res) => {
-        res.send('hello world');
+
+    magicController: (req, res) => {
+        return res
+            .status(200)
+            .json({
+                success: true,
+                redirect: 'home'
+            });
     },
-    verifyTokenController: (req, res) => {
-        res.send('hello world');
+
+    verifyController: (req, res) => {
+        return res
+            .status(200)
+            .json({
+                success: true,
+                id: req.body.id
+            });
+    },
+
+    deleteController: (req, res) => {
+        return res
+            .status(200)
+            .json({
+                success: true,
+                redirect: 'check-email'
+            });
     }
 };
 
