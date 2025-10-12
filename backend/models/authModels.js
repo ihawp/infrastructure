@@ -2,6 +2,7 @@ import pool from '../utils/pool.js';
 import logger from '../utils/logger.js';
 
 const authModels = {
+    
     register: async (x) => {
         try {
             const [response] = await pool.query(`
@@ -16,45 +17,18 @@ const authModels = {
             return error;
         }
     },
-    login: async (x) => {
+    login: async (email) => {
         try {
             const [response] = await pool.query(`
-                INSERT INTO accounts 
-                (x) 
-                VALUES (?)`,
-                [x]
+                SELECT id, username, password
+                FROM accounts 
+                WHERE email = ?`,
+                [email]
             );
             return response;
         } catch (error) {
             logger.error(error);
             return error;
-        }
-    },
-    insertMagicKey: async (key, id) => {
-        try {
-            const [response] = await pool.query(`
-                UPDATE accounts
-                SET magic_link_key = ?
-                WHERE id = ?`,
-                [key, id]
-            );
-            return response;
-        } catch (error) {
-            logger.error(error);
-            return false;
-        }
-    },
-    checkMagicKey: async (key) => {
-        try {
-            const [response] = await pool.query(`
-                SELECT id FROM accounts
-                WHERE magic_link_key = ?`,
-                [key]
-            );
-            return response;
-        } catch (error) {
-            logger.error(error);
-            return false;
         }
     },
     deleteAccount: async (id) => {
@@ -70,11 +44,38 @@ const authModels = {
             return false;
         }
     },
+
+    insertMagicKey: async (key, id) => {
+        try {
+            const [response] = await pool.query(`
+                INSERT INTO magic_keys
+                (user_id, token_hash, expires_at)
+                VALUES (?, ?, UTC_TIMESTAMP() + INTERVAL 10 MINUTE)`,
+                [key, id]
+            );
+            return response;
+        } catch (error) {
+            logger.error(error);
+            return false;
+        }
+    },
+    checkMagicKey: async (key) => {
+        try {
+            const [response] = await pool.query(`
+                SELECT id, user_id FROM magic_keys
+                WHERE magic_link_key = ? AND expires_at > UTC_TIMESTAMP()`,
+                [key]
+            );
+            return response;
+        } catch (error) {
+            logger.error(error);
+            return false;
+        }
+    },
     deleteMagicKey: async (id) => {
         try {
             const [response] = await pool.query(`
-                UPDATE accounts
-                SET magic_link_key = NULL
+                DELETE FROM magic_keys
                 WHERE id = ?`,
                 [id]
             );
@@ -84,11 +85,12 @@ const authModels = {
             return false;
         }
     },
+
     disableRefreshToken: async (id) => {
         try {
             const [response] = await pool.query(`
                 UPDATE refresh_tokens
-                SET revoked = 1, expires = CURRENT_TIMESTAMP
+                SET revoked = 1, expires = UTC_TIMESTAMP()
                 WHERE id = ? LIMIT 1`,
                 [id]
             );
@@ -97,7 +99,9 @@ const authModels = {
             logger.error(error);
             return false;
         }
-    }
+    },
+
+
 };
 
 export default authModels;

@@ -4,11 +4,16 @@ dotenv.config();
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import apiRouter from './routers/apiRouter.js';
-
+import logger from './utils/logger.js';
+import cors from 'cors';
 import bull from './utils/bull.js';
 
 const app = express();
 
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+}));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -16,7 +21,9 @@ app.use(express.json());
 app.use('/api', apiRouter);
 
 app.get('/', (req, res) => {
-    bull.add({ type: "register",verified: 0, user: { id: 1, email: 'test@test.com' } });
+
+    bull.add('test', { message: 'Hello World' });
+
     res.send('Hello World');
 });
 
