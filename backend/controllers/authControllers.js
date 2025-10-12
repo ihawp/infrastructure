@@ -1,5 +1,5 @@
 import authModels from '../models/authModels.js';
-import bull from '../utils/bull.js';
+import queue from '../utils/bull.js';
 import logger from '../utils/logger.js';
 
 const {} = authModels;
@@ -7,14 +7,14 @@ const {} = authModels;
 const authControllers = {
     registerController: async (req, res) => {
 
-        const job = await bull.add('registerUser', {
+        const job = await queue.add('registerUser', {
             name: req.body.name,
             firstname: req.body.firstname,
             lastname: req.body.lastname
         }, {
             removeOnComplete: true,
             removeOnFail: true,
-            jobId: req.body.id
+            jobId: req.body.id 
         });
         
         return res
