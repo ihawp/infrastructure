@@ -1,2 +1,5 @@
-*/node_modules/**/
-*/.env
+node_modules/
+.env
+**/face_database.pkl
+pycache_/
+startup_log.txt

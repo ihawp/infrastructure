@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Face Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #videoContainer {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        #video {
+            width: 640px;
+            height: 480px;
+            background: #000;
+            border-radius: 8px;
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .face-marker {
+            position: absolute;
+            border: 3px solid #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 4px;
+        }
+        .landmark-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+        .left-eye { 
+            background: #ff0000; 
+            width: 15px;
+            height: 15px;
+        }
+        .right-eye { 
+            background: #0000ff; 
+            width: 15px;
+            height: 15px;
+        }
+        .nose { 
+            background: #ffff00; 
+            width: 12px;
+            height: 12px;
+        }
+        .mouth { 
+            background: #ff00ff; 
+            width: 10px;
+            height: 10px;
+        }
+        .pose-marker {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+        .shoulder { background: #00ff00; }
+        .elbow { background: #ff8800; }
+        .wrist { background: #8800ff; }
+        .hip { background: #0088ff; }
+        .knee { background: #ff0088; }
+        .ankle { background: #88ff00; }
+        .head { background: #ffaa00; }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .status.connected {
+            background: #d4edda;
+        }
+        .face-status {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        .face-status h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .face-status div {
+            margin: 5px 0;
+            padding: 5px;
+            background: white;
+            border-radius: 4px;
+        }
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Face Detection System</h1>
+        
+        <div class="controls">
+            <button id="startBtn">Start Camera</button>
+            <button id="stopBtn" disabled>Stop Camera</button>
+            <button id="connectBtn" disabled>Connect to Backend</button>
+            <button id="disconnectBtn" disabled>Disconnect</button>
+            <button id="registerBtn" disabled>Register Face</button>
+            <button id="testBtn" disabled>Test Recognition</button>
+        </div>
+        
+        <div id="status" class="status disconnected">
+            Status: Disconnected
+        </div>
+        
+        <div id="faceStatus" class="face-status">
+            <h3>Face Recognition Status</h3>
+            <div id="registeredFaces">No faces registered</div>
+            <div id="currentFace">No face detected</div>
+            <div id="verificationStatus">Not verified</div>
+        </div>
+        
+        <div class="info">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Click "Start Camera" to enable webcam</li>
+                <li>Click "Connect to Backend" to start face detection</li>
+                <li>Green boxes around faces, colored dots for landmarks:</li>
+                <ul>
+                    <li><span style="color: red;">●</span> Red dots = Left eye</li>
+                    <li><span style="color: blue;">●</span> Blue dots = Right eye</li>
+                    <li><span style="color: yellow;">●</span> Yellow dots = Nose</li>
+                    <li><span style="color: magenta;">●</span> Magenta dots = Mouth</li>
+                </ul>
+                <li>Detection runs at ~10 FPS for real-time performance</li>
+            </ol>
+        </div>
+        
+        <div id="videoContainer">
+            <video id="video" autoplay muted></video>
+            <canvas id="canvas" width="640" height="480"></canvas>
+        </div>
+        
+        <div id="info">
+            <p><strong>Faces detected:</strong> <span id="faceCount">0</span></p>
+            <p><strong>Body parts tracked:</strong> <span id="poseCount">0</span></p>
+            <p><strong>FPS:</strong> <span id="fps">0</span></p>
+        </div>
+        
+        <div id="livenessInfo" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+            <h3>Liveness Verification</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                    <p><strong>Blinks detected:</strong> <span id="blinkCount">0</span></p>
+                    <p><strong>Eye Aspect Ratio:</strong> <span id="earValue">0.00</span></p>
+                    <p><strong>Mouth Aspect Ratio:</strong> <span id="marValue">0.00</span></p>
+                </div>
+                <div>
+                    <p><strong>Head Pose:</strong></p>
+                    <p>Yaw: <span id="yawValue">0°</span> | Pitch: <span id="pitchValue">0°</span> | Roll: <span id="rollValue">0°</span></p>
+                    <p><strong>Liveness Checks:</strong></p>
+                    <p>Blink: <span id="blinkCheck">❌</span> | Mouth: <span id="mouthCheck">❌</span> | Head: <span id="headCheck">❌</span> | Micro: <span id="microCheck">❌</span></p>
+                </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <p><strong>Verification Status:</strong> <span id="verificationStatus" style="font-weight: bold; color: red;">❌ NOT VERIFIED</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let video, canvas, ctx, ws, stream, isStreaming = false;
+        let frameCount = 0, lastTime = Date.now();
+        
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const testBtn = document.getElementById('testBtn');
+        const status = document.getElementById('status');
+        const faceCount = document.getElementById('faceCount');
+        const poseCount = document.getElementById('poseCount');
+        const fps = document.getElementById('fps');
+        const blinkCount = document.getElementById('blinkCount');
+        const earValue = document.getElementById('earValue');
+        const marValue = document.getElementById('marValue');
+        const yawValue = document.getElementById('yawValue');
+        const pitchValue = document.getElementById('pitchValue');
+        const rollValue = document.getElementById('rollValue');
+        const blinkCheck = document.getElementById('blinkCheck');
+        const mouthCheck = document.getElementById('mouthCheck');
+        const headCheck = document.getElementById('headCheck');
+        const microCheck = document.getElementById('microCheck');
+        const verificationStatus = document.getElementById('verificationStatus');
+        const registeredFaces = document.getElementById('registeredFaces');
+        const currentFace = document.getElementById('currentFace');
+        const faceVerificationStatus = document.getElementById('verificationStatus');
+        
+        // Start camera
+        startBtn.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { width: 640, height: 480 } 
+                });
+                video = document.getElementById('video');
+                video.srcObject = stream;
+                
+                video.addEventListener('loadedmetadata', () => {
+                    video.play();
+                    isStreaming = true;
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    connectBtn.disabled = false;
+                    updateStatus('Camera started', 'connected');
+                });
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                updateStatus('Camera access denied', 'disconnected');
+            }
+        });
+        
+        // Stop camera
+        stopBtn.addEventListener('click', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+                isStreaming = false;
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = true;
+                updateStatus('Camera stopped', 'disconnected');
+                clearFaceMarkers();
+            }
+        });
+        
+        // Connect to backend
+        connectBtn.addEventListener('click', () => {
+            connectToBackend();
+        });
+        
+        // Disconnect from backend
+        disconnectBtn.addEventListener('click', () => {
+            if (ws) {
+                ws.close();
+            }
+        });
+        
+        function connectToBackend() {
+            ws = new WebSocket('ws://localhost:8000/ws');
+            
+            ws.onopen = () => {
+                updateStatus('Connected to backend', 'connected');
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+                updateButtonStates(); // Enable face registration buttons
+                startSendingFrames();
+            };
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                console.log('Received data:', data);
+                console.log('Faces:', data.faces);
+                console.log('Pose:', data.pose);
+                if (data.faces && data.faces.length > 0) {
+                    console.log('First face landmarks:', data.faces[0].landmarks);
+                }
+                displayFaceMarkers(data.faces);
+                displayPoseMarkers(data.pose);
+                displayLivenessData(data.liveness);
+                displayFaceVerification(data.faces);
+                faceCount.textContent = data.face_count || data.count || 0;
+                poseCount.textContent = data.pose_count || 0;
+            };
+            
+            ws.onclose = () => {
+                updateStatus('Disconnected from backend', 'disconnected');
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                updateButtonStates(); // Disable face registration buttons
+            };
+            
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                updateStatus('Connection error', 'disconnected');
+                updateButtonStates(); // Disable face registration buttons
+            };
+        }
+        
+        function startSendingFrames() {
+            if (!isStreaming || !ws || ws.readyState !== WebSocket.OPEN) return;
+            
+            // Create canvas to capture video frame
+            if (!canvas) {
+                canvas = document.createElement('canvas');
+                canvas.width = 640;
+                canvas.height = 480;
+                ctx = canvas.getContext('2d');
+            }
+            
+            // Draw video frame to canvas
+            ctx.drawImage(video, 0, 0, 640, 480);
+            
+            // Convert to blob and send
+            canvas.toBlob(blob => {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(blob);
+                }
+            }, 'image/jpeg', 0.7); // 70% quality for speed
+            
+            // Calculate FPS
+            frameCount++;
+            const now = Date.now();
+            if (now - lastTime >= 1000) {
+                fps.textContent = frameCount;
+                frameCount = 0;
+                lastTime = now;
+            }
+            
+            // Continue sending frames
+            setTimeout(() => startSendingFrames(), 50); // ~20 FPS for smoother tracking
+        }
+        
+        function displayFaceMarkers(faces) {
+            // Clear existing markers
+            clearFaceMarkers();
+            
+            // Get video element dimensions
+            const video = document.getElementById('video');
+            const videoRect = video.getBoundingClientRect();
+            const videoWidth = video.videoWidth || 640;
+            const videoHeight = video.videoHeight || 480;
+            const displayWidth = videoRect.width;
+            const displayHeight = videoRect.height;
+            
+            // Calculate scaling factors
+            const scaleX = displayWidth / videoWidth;
+            const scaleY = displayHeight / videoHeight;
+            
+            console.log('Video dimensions:', videoWidth, 'x', videoHeight);
+            console.log('Display dimensions:', displayWidth, 'x', displayHeight);
+            console.log('Scale factors:', scaleX, scaleY);
+            
+            // Create new markers
+            faces.forEach(face => {
+                // Face bounding box (scale coordinates)
+                const marker = document.createElement('div');
+                marker.className = 'face-marker';
+                marker.style.left = (face.x * scaleX) + 'px';
+                marker.style.top = (face.y * scaleY) + 'px';
+                marker.style.width = (face.width * scaleX) + 'px';
+                marker.style.height = (face.height * scaleY) + 'px';
+                document.getElementById('canvas').appendChild(marker);
+                
+                // Facial landmarks
+                if (face.landmarks && face.landmarks.left_eye) {
+                    console.log('Creating landmarks for face at:', face.x, face.y);
+                    // Left eye (red dots)
+                    face.landmarks.left_eye.forEach((point, index) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'landmark-point left-eye';
+                        dot.style.left = (point.x * scaleX) + 'px';
+                        dot.style.top = (point.y * scaleY) + 'px';
+                        console.log(`Left eye ${index}:`, point.x, point.y, '->', (point.x * scaleX), (point.y * scaleY));
+                        document.getElementById('videoContainer').appendChild(dot);
+                        console.log('Added left eye dot to DOM');
+                    });
+                    
+                    // Right eye (blue dots)
+                    face.landmarks.right_eye.forEach((point, index) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'landmark-point right-eye';
+                        dot.style.left = (point.x * scaleX) + 'px';
+                        dot.style.top = (point.y * scaleY) + 'px';
+                        console.log(`Right eye ${index}:`, point.x, point.y, '->', (point.x * scaleX), (point.y * scaleY));
+                        document.getElementById('videoContainer').appendChild(dot);
+                        console.log('Added right eye dot to DOM');
+                    });
+                    
+                    // Nose (yellow dots)
+                    face.landmarks.nose.forEach((point, index) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'landmark-point nose';
+                        dot.style.left = (point.x * scaleX) + 'px';
+                        dot.style.top = (point.y * scaleY) + 'px';
+                        console.log(`Nose ${index}:`, point.x, point.y, '->', (point.x * scaleX), (point.y * scaleY));
+                        document.getElementById('videoContainer').appendChild(dot);
+                        console.log('Added nose dot to DOM');
+                    });
+                    
+                    // Mouth (magenta dots)
+                    face.landmarks.mouth.forEach((point, index) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'landmark-point mouth';
+                        dot.style.left = (point.x * scaleX) + 'px';
+                        dot.style.top = (point.y * scaleY) + 'px';
+                        dot.style.zIndex = '10000';
+                        console.log(`Mouth ${index}:`, point.x, point.y, '->', (point.x * scaleX), (point.y * scaleY));
+                        document.getElementById('videoContainer').appendChild(dot);
+                        console.log('Added mouth dot to DOM');
+                    });
+                }
+            });
+        }
+        
+        function displayPoseMarkers(poseData) {
+            if (!poseData || poseData.length === 0) return;
+            
+            // Get video element dimensions
+            const video = document.getElementById('video');
+            const videoRect = video.getBoundingClientRect();
+            const videoWidth = video.videoWidth || 640;
+            const videoHeight = video.videoHeight || 480;
+            const displayWidth = videoRect.width;
+            const displayHeight = videoRect.height;
+            
+            // Calculate scaling factors
+            const scaleX = displayWidth / videoWidth;
+            const scaleY = displayHeight / videoHeight;
+            
+            poseData.forEach(point => {
+                const marker = document.createElement('div');
+                marker.className = 'pose-marker';
+                
+                // Determine marker type based on body part name
+                if (point.name.includes('shoulder')) {
+                    marker.classList.add('shoulder');
+                } else if (point.name.includes('elbow')) {
+                    marker.classList.add('elbow');
+                } else if (point.name.includes('wrist')) {
+                    marker.classList.add('wrist');
+                } else if (point.name.includes('hip')) {
+                    marker.classList.add('hip');
+                } else if (point.name.includes('knee')) {
+                    marker.classList.add('knee');
+                } else if (point.name.includes('ankle')) {
+                    marker.classList.add('ankle');
+                } else if (point.name.includes('nose') || point.name.includes('eye') || point.name.includes('ear')) {
+                    marker.classList.add('head');
+                }
+                
+                marker.style.left = (point.x * scaleX) + 'px';
+                marker.style.top = (point.y * scaleY) + 'px';
+                marker.title = `${point.name} (${Math.round(point.visibility * 100)}%)`;
+                
+                document.getElementById('videoContainer').appendChild(marker);
+            });
+        }
+        
+        function displayLivenessData(livenessData) {
+            if (!livenessData) return;
+            
+            // Update basic metrics
+            blinkCount.textContent = livenessData.blink_count || 0;
+            earValue.textContent = (livenessData.ear_current || 0).toFixed(3);
+            marValue.textContent = (livenessData.mar_current || 0).toFixed(3);
+            
+            // Update head pose
+            if (livenessData.head_pose) {
+                yawValue.textContent = Math.round(livenessData.head_pose.yaw) + '°';
+                pitchValue.textContent = Math.round(livenessData.head_pose.pitch) + '°';
+                rollValue.textContent = Math.round(livenessData.head_pose.roll) + '°';
+            }
+            
+            // Update liveness checks
+            if (livenessData.checks) {
+                blinkCheck.textContent = livenessData.checks.blink_detected ? '✅' : '❌';
+                mouthCheck.textContent = livenessData.checks.mouth_movement ? '✅' : '❌';
+                headCheck.textContent = livenessData.checks.head_movement ? '✅' : '❌';
+                microCheck.textContent = livenessData.checks.micro_movements ? '✅' : '❌';
+            }
+            
+            // Update verification status
+            if (livenessData.verification_passed) {
+                verificationStatus.textContent = '✅ VERIFIED - LIVE PERSON';
+                verificationStatus.style.color = 'green';
+            } else {
+                verificationStatus.textContent = '❌ NOT VERIFIED';
+                verificationStatus.style.color = 'red';
+            }
+        }
+        
+        function clearFaceMarkers() {
+            const canvas = document.getElementById('videoContainer');
+            const markers = canvas.querySelectorAll('.face-marker, .landmark-point, .pose-marker');
+            markers.forEach(marker => marker.remove());
+        }
+        
+        function updateStatus(message, type) {
+            status.textContent = `Status: ${message}`;
+            status.className = `status ${type}`;
+        }
+        
+        // Face registration and verification functions
+        function displayFaceVerification(faces) {
+            if (faces && faces.length > 0) {
+                const face = faces[0];
+                currentFace.textContent = `Face detected: ${face.verified ? 'VERIFIED' : 'NOT VERIFIED'}`;
+                faceVerificationStatus.textContent = `Similarity: ${(face.similarity * 100).toFixed(1)}%`;
+                currentFace.style.color = face.verified ? '#4CAF50' : '#f44336';
+            } else {
+                currentFace.textContent = 'No face detected';
+                faceVerificationStatus.textContent = 'Not verified';
+                currentFace.style.color = '#666';
+            }
+        }
+        
+        // Register face button functionality
+        registerBtn.addEventListener('click', async () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('Please connect to backend first');
+                return;
+            }
+            
+            const faceName = prompt('Enter your name for face registration:');
+            if (!faceName) return;
+            
+            // Wait for next face detection to get embedding
+            const originalHandler = ws.onmessage;
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                console.log('Debug: Registration waiting for face data:', data);
+                console.log('Debug: Faces found:', data.faces ? data.faces.length : 0);
+                if (data.faces && data.faces.length > 0) {
+                    console.log('Debug: First face data:', data.faces[0]);
+                    console.log('Debug: Has embedding:', !!data.faces[0].embedding);
+                }
+                
+                if (data.faces && data.faces.length > 0 && data.faces[0].embedding) {
+                    // Register the face
+                    registerFace(faceName, data.faces[0].embedding);
+                    ws.onmessage = originalHandler; // Restore original handler
+                } else {
+                    originalHandler(event); // Call original handler
+                }
+            };
+            
+            alert('Look at the camera for 3 seconds to register your face...');
+        });
+        
+        // Test recognition button functionality
+        testBtn.addEventListener('click', async () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('Please connect to backend first');
+                return;
+            }
+            alert('Face recognition is running automatically. Check the status below.');
+        });
+        
+        async function registerFace(name, embedding) {
+            try {
+                console.log('Debug: Registering face with name:', name);
+                console.log('Debug: Embedding type:', typeof embedding);
+                console.log('Debug: Embedding length:', embedding ? embedding.length : 'null');
+                
+                const response = await fetch('http://localhost:8000/save-face', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        embedding: embedding
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Debug: Registration response:', result);
+                
+                if (result.status === 'success') {
+                    alert(`Face registered successfully as "${name}"`);
+                    loadFaceDatabase();
+                } else {
+                    alert(`Registration failed: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error registering face:', error);
+                alert('Error registering face');
+            }
+        }
+        
+        async function loadFaceDatabase() {
+            try {
+                const response = await fetch('http://localhost:8000/face-database');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    registeredFaces.textContent = `Registered faces: ${data.faces.join(', ') || 'None'}`;
+                }
+            } catch (error) {
+                console.error('Error loading face database:', error);
+            }
+        }
+        
+        // Enable/disable buttons based on connection status
+        function updateButtonStates() {
+            const connected = ws && ws.readyState === WebSocket.OPEN;
+            registerBtn.disabled = !connected;
+            testBtn.disabled = !connected;
+        }
+        
+        // Initialize
+        updateStatus('Ready to start', 'disconnected');
+        loadFaceDatabase();
+    </script>
+</body>
+</html>
