@@ -1,5 +1,5 @@
 const register = {
-    register: async function(user) {
+    registerUser: async function(user) {
         console.log('Registering user', user);
         logger.info({ verificationEmail: 'sent', user });
         console.log('User registered');

@@ -10,6 +10,6 @@ const cluster = new Redis.Cluster([
     { host: process.env.REDIS_HOST3, port: process.env.REDIS_PORT3, password: process.env.REDIS_PASSWORD3 },
 ]);
 
-const bull = new Bull('auth', () => { createClient: cluster });
+const bull = new Bull('auth', { createClient: () => cluster });
 
 export default bull;

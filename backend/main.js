@@ -22,7 +22,11 @@ app.use('/api', apiRouter);
 
 app.get('/', (req, res) => {
 
+    console.log('adding job');
+
     bull.add('test', { message: 'Hello World' });
+
+    console.log('job added?');
 
     res.send('Hello World');
 });

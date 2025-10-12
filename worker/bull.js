@@ -13,7 +13,7 @@ const cluster = new Redis.Cluster([
     { host: process.env.REDIS_HOST3, port: process.env.REDIS_PORT3, password: process.env.REDIS_PASSWORD3 },
 ]);
 
-const bull = new Bull('auth', () => { createClient: cluster });
+const bull = new Bull('auth', { createClient: () => cluster });
 
 bull.process('sendMagicLink', async (job) => magicKey.send(job));
 
@@ -21,6 +21,7 @@ bull.process('registerUser', async (job) => register.registerUser(job));
 
 const test = {
     test: async (job) => {
+        console.log('test');
         console.log(job.data);
     }
 }
