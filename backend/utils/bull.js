@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import Bull from 'bull';
+import { Queue } from 'bullmq';
 import Redis from 'ioredis';
   
 const cluster = new Redis.Cluster([
@@ -10,6 +10,6 @@ const cluster = new Redis.Cluster([
     { host: process.env.REDIS_HOST3, port: process.env.REDIS_PORT3, password: process.env.REDIS_PASSWORD3 },
 ]);
 
-const bull = new Bull('auth', { createClient: () => cluster });
+const bull = new Queue('auth', { connection: cluster });
 
 export default bull;
