@@ -19,18 +19,21 @@ const cluster = new Redis.Cluster([
   { host: process.env.REDIS_HOST, port: process.env.REDIS_PORT, password: process.env.REDIS_PASSWORD },
   { host: process.env.REDIS_HOST2, port: process.env.REDIS_PORT2, password: process.env.REDIS_PASSWORD2 },
   { host: process.env.REDIS_HOST3, port: process.env.REDIS_PORT3, password: process.env.REDIS_PASSWORD3 },
+  { host: process.env.REDIS_HOST4, port: process.env.REDIS_PORT4, password: process.env.REDIS_PASSWORD4 },
+  { host: process.env.REDIS_HOST5, port: process.env.REDIS_PORT5, password: process.env.REDIS_PASSWORD5 },
+  { host: process.env.REDIS_HOST6, port: process.env.REDIS_PORT6, password: process.env.REDIS_PASSWORD6 },
 ], {
   clusterRetryStrategy: times => Math.min(100 + times * 2, 2000), // optional retry strategy
-  scaleReads: 'master', // change to slave when available
+  scaleReads: 'slave', // Use masters for read operations (no slaves yet)
   enableReadyCheck: false,
   logger: redisLogger
 });
 
-const worker = new Worker(
-    '{cluster}', // queue name
+const worker = new Worker('Cluster',
     async (job) => {
-        console.log('Processing job:', job.name, job.id);
-        // process jobs based on name
+
+        console.log(job.name);
+      
         switch (job.name) {
             case 'sendMagicLink':
                 return magicKey.send(job);
@@ -47,7 +50,7 @@ const worker = new Worker(
                 throw new Error(`Unknown job name: ${job.name}`);
                 break;
         }
-    }, { connection: cluster }
+    }, { connection: cluster, prefix: '{cluster}' }
 );
 
 worker.on('completed', (job, returnvalue) => {
