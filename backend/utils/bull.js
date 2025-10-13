@@ -3,15 +3,8 @@ dotenv.config();
 
 import { Queue } from 'bullmq';
 import Redis from 'ioredis';
-import logger from './logger.js';
+import { redisLogger } from './logger.js';
 
-const redisLogger = {
-    debug: (msg) => logger.debug(msg),
-    info: (msg) => logger.info(msg),
-    warn: (msg) => logger.warn(msg),
-    error: (msg) => logger.error(msg)
-};
-  
 const cluster = new Redis.Cluster([
     { host: process.env.REDIS_HOST, port: process.env.REDIS_PORT, password: process.env.REDIS_PASSWORD },
     { host: process.env.REDIS_HOST2, port: process.env.REDIS_PORT2, password: process.env.REDIS_PASSWORD2 },

@@ -3,17 +3,9 @@ dotenv.config();
 
 import { Worker } from 'bullmq';
 import Redis from 'ioredis';
-import logger from './logger.js';
+import { redisLogger } from './logger.js';
 import register from './functions/register.js';
 import magicKey from './functions/magicKey.js';
-
-  // Wrapper for ioredis
-const redisLogger = {
-  debug: (msg) => logger.debug(msg),
-  info: (msg) => logger.info(msg),
-  warn: (msg) => logger.warn(msg),
-  error: (msg) => logger.error(msg)
-};
 
 const cluster = new Redis.Cluster([
   { host: process.env.REDIS_HOST, port: process.env.REDIS_PORT, password: process.env.REDIS_PASSWORD },

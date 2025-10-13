@@ -32,7 +32,6 @@ app.get('/', async (req, res) => {
                 delay: 1000
             },
             delay: 0,
-            priority: 1,
             timeout: 5000,
             jobId: 'test-' + Date.now()
         });

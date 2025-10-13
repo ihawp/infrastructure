@@ -14,4 +14,11 @@ const logger = winston.createLogger({
     ]
 });
 
+export const redisLogger = {
+    debug: (msg) => logger.debug(msg),
+    info: (msg) => logger.info(msg),
+    warn: (msg) => logger.warn(msg),
+    error: (msg) => logger.error(msg)
+};
+
 export default logger;
