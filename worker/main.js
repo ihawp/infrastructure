@@ -24,7 +24,7 @@ const cluster = new Redis.Cluster([
   { host: process.env.REDIS_HOST6, port: process.env.REDIS_PORT6, password: process.env.REDIS_PASSWORD6 },
 ], {
   clusterRetryStrategy: times => Math.min(100 + times * 2, 2000), // optional retry strategy
-  scaleReads: 'slave', // Use masters for read operations (no slaves yet)
+  scaleReads: 'slave',
   enableReadyCheck: false,
   logger: redisLogger
 });
@@ -36,19 +36,15 @@ const worker = new Worker('Cluster',
       
         switch (job.name) {
             case 'sendMagicLink':
-                return magicKey.send(job);
-                break;
+                return await magicKey.send(job);
             case 'registerUser':
-                return register.registerUser(job);
-                break;
+                return await register.registerUser(job);
             case 'test':
                 console.log('test job received');
-                console.log(job.data);
                 return 'done';
-                break;
             default:
+                logger.error(`Unknown job name: ${job.name}`);
                 throw new Error(`Unknown job name: ${job.name}`);
-                break;
         }
     }, { connection: cluster, prefix: '{cluster}' }
 );

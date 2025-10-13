@@ -23,7 +23,19 @@ app.get('/', async (req, res) => {
     try {
         console.log('Adding test job...');
         
-        const job = await bull.add('test', { message: 'Hello World' });
+        const job = await bull.add('test', { message: 'Hello World' }, {
+            removeOnComplete: true,
+            removeOnFail: true,
+            attempts: 3,
+            backoff: {
+                type: 'exponential',
+                delay: 1000
+            },
+            delay: 0,
+            priority: 1,
+            timeout: 5000,
+            jobId: 'test-' + Date.now()
+        });
         
         console.log('Job added successfully:', job.id);
         

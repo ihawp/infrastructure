@@ -21,7 +21,7 @@ const cluster = new Redis.Cluster([
     { host: process.env.REDIS_HOST6, port: process.env.REDIS_PORT6, password: process.env.REDIS_PASSWORD6 },
 ], {
     clusterRetryStrategy: times => Math.min(100 + times * 2, 2000), // optional retry strategy
-    scaleReads: 'slave', // Use slaves for read operations
+    scaleReads: 'slave',
     enableReadyCheck: false,
     logger: redisLogger
 });
