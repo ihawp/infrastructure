@@ -638,3 +638,6 @@
 {"level":"debug","message":"Read operation executed:","query":"SELECT * FROM test","rows":4}
 {"level":"debug","message":"Read operation executed:","query":"SELECT * FROM test","rows":4}
 {"level":"debug","message":"Read operation executed:","query":"SELECT * FROM test","rows":4}
+{"level":"debug","message":"Read operation executed:","query":"SELECT * FROM test","rows":4}
+{"level":"debug","message":"Read operation executed:","query":"SELECT * FROM test","rows":4}
+{"level":"debug","message":"Read operation executed:","query":"SELECT * FROM test","rows":4}
