@@ -414,3 +414,158 @@
 {"level":"info","message":"Cluster monitoring started successfully"}
 {"level":"info","message":"Starting cluster monitoring..."}
 {"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"code":"ETIMEDOUT","level":"error","message":"Cluster health check failed: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at PromisePool.query (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at checkClusterHealth (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:52:47)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:25:38)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Cluster health check failed:","read":false,"write":false}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Read operation failed:","params":[],"query":"SHOW DATABASES"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"code":"ETIMEDOUT","level":"error","message":"Cluster health check failed: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at PromisePool.query (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at checkClusterHealth (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:52:47)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:25:38)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Cluster health check failed:","read":false,"write":false}
+{"code":"ETIMEDOUT","level":"error","message":"Cluster health check failed: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at PromisePool.query (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at checkClusterHealth (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:52:47)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:25:38)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Cluster health check failed:","read":false,"write":false}
+{"code":"ETIMEDOUT","level":"error","message":"Cluster health check failed: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at PromisePool.query (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at checkClusterHealth (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:52:47)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:25:38)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Cluster health check failed:","read":false,"write":false}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"code":"ETIMEDOUT","level":"error","message":"Cluster health check failed: connect ETIMEDOUT","stack":"Error: connect ETIMEDOUT\n    at PromisePool.query (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at checkClusterHealth (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:52:47)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:25:38)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"error":"connect ETIMEDOUT","level":"error","message":"Cluster health check failed:","read":false,"write":false}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"error":"INSERT command denied to user 'clusteradmin'@'ihawp' for table 'test'","level":"error","message":"Write operation failed:","params":["ihawp"],"query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"error":"INSERT command denied to user 'clusteradmin'@'ihawp' for table 'test'","level":"error","message":"Write operation failed:","params":["ihawp"],"query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"error":"INSERT command denied to user 'clusteradmin'@'ihawp' for table 'test'","level":"error","message":"Write operation failed:","params":["ihawp"],"query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"error":"INSERT command denied to user 'clusteradmin'@'ihawp' for table 'test'","level":"error","message":"Write operation failed:","params":["ihawp"],"query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"error":"INSERT command denied to user 'clusteradmin'@'ihawp' for table 'test'","level":"error","message":"Write operation failed:","params":["ihawp"],"query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"error":"INSERT command denied to user 'clusteradmin'@'ihawp' for table 'test'","level":"error","message":"Write operation failed:","params":["ihawp"],"query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"Plugin 'mysql_native_password' is not loaded","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"error":"Plugin 'mysql_native_password' is not loaded","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"error":"Plugin 'mysql_native_password' is not loaded","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"Plugin 'mysql_native_password' is not loaded","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"affectedRows":1,"level":"debug","message":"Write operation executed:","query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"affectedRows":1,"level":"debug","message":"Write operation executed:","query":"INSERT INTO test (username) VALUES (?)"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"error":"Table 'whatever.refresh_tokens' doesn't exist","level":"error","message":"Write operation failed:","params":[],"query":"\n                    DELETE FROM refresh_tokens \n                    WHERE expires_at < UTC_TIMESTAMP() OR revoked = 1\n                "}
+{"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Token cleanup error: Table 'whatever.refresh_tokens' doesn't exist","sql":"\n                    DELETE FROM refresh_tokens \n                    WHERE expires_at < UTC_TIMESTAMP() OR revoked = 1\n                ","sqlMessage":"Table 'whatever.refresh_tokens' doesn't exist","sqlState":"42S02","stack":"Error: Table 'whatever.refresh_tokens' doesn't exist\n    at PromisePool.execute (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:54:22)\n    at Object.write (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:71:46)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:40:41)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
