@@ -37,3 +37,55 @@
 {"error":"Plugin 'mysql_native_password' is not loaded","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
 {"error":"Table 'whatever.refresh_tokens' doesn't exist","level":"error","message":"Write operation failed:","params":[],"query":"\n                    DELETE FROM refresh_tokens \n                    WHERE expires_at < UTC_TIMESTAMP() OR revoked = 1\n                "}
 {"code":"ER_NO_SUCH_TABLE","errno":1146,"level":"error","message":"Token cleanup error: Table 'whatever.refresh_tokens' doesn't exist","sql":"\n                    DELETE FROM refresh_tokens \n                    WHERE expires_at < UTC_TIMESTAMP() OR revoked = 1\n                ","sqlMessage":"Table 'whatever.refresh_tokens' doesn't exist","sqlState":"42S02","stack":"Error: Table 'whatever.refresh_tokens' doesn't exist\n    at PromisePool.execute (C:\\Users\\ihawp\\Desktop\\shitbrains\\backend\\node_modules\\mysql2\\lib\\promise\\pool.js:54:22)\n    at Object.write (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/pool.js:71:46)\n    at Timeout._onTimeout (file:///C:/Users/ihawp/Desktop/shitbrains/backend/utils/clusterMonitor.js:40:41)\n    at listOnTimeout (node:internal/timers:588:17)\n    at process.processTimers (node:internal/timers:523:7)"}
+{"error":"Can't connect to remote MySQL server","level":"error","message":"Read operation failed:","params":[],"query":"NOW()"}
+{"error":"","level":"error","message":"Write operation failed:","params":[],"query":"NOW()"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"Can't connect to remote MySQL server","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"Can't connect to remote MySQL server","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}

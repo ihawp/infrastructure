@@ -514,3 +514,55 @@
 {"level":"info","message":"Cluster monitoring started successfully"}
 {"level":"info","message":"Starting cluster monitoring..."}
 {"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"Can't connect to remote MySQL server","level":"error","message":"Read operation failed:","params":[],"query":"NOW()"}
+{"error":"","level":"error","message":"Write operation failed:","params":[],"query":"NOW()"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW()"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"Can't connect to remote MySQL server","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"Can't connect to remote MySQL server","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[1],"query":"SELECT * FROM test WHERE id = ?"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test WHERE"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}
+{"error":"","level":"error","message":"Read operation failed:","params":[],"query":"SELECT * FROM test"}

@@ -25,24 +25,23 @@ app.use('/api', apiRouter);
 
 app.get('/health', async (req, res) => {
     try {
-        const health = await checkClusterHealth();
-        const stats = db.getStats();
+        const response = await db.read('SELECT * FROM test');
+        if (!response) throw new Error('Server blocked');
+        console.log(response);
         
         res.status(200).json({
             success: true,
-            message: 'Cluster health check',
+            message: 'Bananaphone',
             data: {
-                cluster: health,
-                poolStats: stats,
+                response,
                 timestamp: new Date().toISOString()
             }
         });
     } catch (error) {
-        console.error('Health check failed:', error);
         res.status(500).json({
             success: false,
-            message: 'Health check failed',
-            error: error.message
+            message: 'Server blocked',
+            error
         });
     }
 });
