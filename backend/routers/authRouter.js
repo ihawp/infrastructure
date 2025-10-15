@@ -3,7 +3,9 @@ import authControllers from '../controllers/authControllers.js';
 import expressValidator from '../middleware/expressValidator.js';
 import authValidator from '../middleware/authValidator.js';
 import checkCredentials from '../middleware/checkCredentials.js';
-const { registerController, loginController, magicController, verifyController, deleteController } = authControllers;
+
+const { registerController, loginController, magicController, verifyController, deleteController } =
+    authControllers;
 const { validateErrors } = expressValidator;
 const { validatorRegister, validatorLogin, validatorMagic } = authValidator;
 

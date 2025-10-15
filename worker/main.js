@@ -21,6 +21,9 @@ const cluster = new Redis.Cluster([
   logger: redisLogger
 });
 
+// Create multiple workers, each worker uses it's own thread
+// and connection to Redis client.
+
 const worker = new Worker('Cluster',
     async (job) => {
 

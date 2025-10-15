@@ -18,6 +18,6 @@ const transaction = async (query, values) => {
         logger.info('Connection released');
         connection.release();
     }
-}
+};
 
 export default transaction;

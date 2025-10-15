@@ -254,3 +254,163 @@
 {"level":"info","message":"DB connection established"}
 {"level":"info","message":"DB connection established"}
 {"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"level":"info","message":"DB connection established"}
+{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"level":"error","message":"Access denied for user ''@'localhost' (using password: NO)","sqlMessage":"Access denied for user ''@'localhost' (using password: NO)","sqlState":"28000"}
+{"level":"info","message":"DB connection established"}
+{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"level":"error","message":"Access denied for user ''@'localhost' (using password: NO)","sqlMessage":"Access denied for user ''@'localhost' (using password: NO)","sqlState":"28000"}
+{"level":"info","message":"DB connection established"}
+{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"level":"error","message":"Access denied for user ''@'localhost' (using password: NO)","sqlMessage":"Access denied for user ''@'localhost' (using password: NO)","sqlState":"28000"}
+{"level":"info","message":"DB connection established"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"error","message":"Unknown column 'password' in 'field list'","sql":"\n                SELECT id, username, password\n                FROM accounts \n                WHERE email = 'test@example.com'","sqlMessage":"Unknown column 'password' in 'field list'","sqlState":"42S22"}
+{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"level":"error","message":"Access denied for user 'root'@'localhost' (using password: YES)","sqlMessage":"Access denied for user 'root'@'localhost' (using password: YES)","sqlState":"28000"}
+{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"level":"error","message":"Access denied for user 'root'@'localhost' (using password: YES)","sqlMessage":"Access denied for user 'root'@'localhost' (using password: YES)","sqlState":"28000"}
+{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"level":"error","message":"Access denied for user 'root'@'localhost' (using password: YES)","sqlMessage":"Access denied for user 'root'@'localhost' (using password: YES)","sqlState":"28000"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"error":"getaddrinfo ENOTFOUND localhost:6448","level":"error","message":"Read operation failed:","params":[],"query":"SHOW DATABASES"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"error":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW() as current_time"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"error":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW() as current_time"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"error":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW() as current_time"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"error":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW() as current_time"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"error":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_timestamp' at line 1","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW() as current_timestamp"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"error":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_timestamp' at line 1","level":"error","message":"Read operation failed:","params":[],"query":"SELECT NOW() as current_timestamp"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"debug","message":"Read operation executed:","query":"SHOW DATABASES","rows":7}
+{"level":"debug","message":"Read operation executed:","query":"SELECT NOW()","rows":1}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Write pool health check passed"}
+{"level":"info","message":"Read pool health check passed"}
+{"level":"debug","message":"Cluster health check passed"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
+{"level":"info","message":"Starting cluster monitoring..."}
+{"level":"info","message":"Cluster monitoring started successfully"}
